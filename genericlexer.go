@@ -194,7 +194,7 @@ func lexComma(l *Lexer) stateFn {
 }
 
 func isWSP(r rune) bool {
-	return r == ' ' || r == '\t'
+	return r == ' ' || r == '\t' || r == '\n'
 }
 
 func lexWSP(l *Lexer) stateFn {
