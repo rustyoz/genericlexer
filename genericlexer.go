@@ -241,3 +241,10 @@ func (l *Lexer) ConsumeWhiteSpace() error {
 	}
 	return nil
 }
+
+func (l *Lexer) ConsumeComma() error {
+	for l.PeekItem().Type == ItemComma {
+		l.NextItem()
+	}
+	return nil
+}
