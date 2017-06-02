@@ -122,12 +122,11 @@ func (l *Lexer) NextItem() Item {
 	if l.peekcount > 0 {
 		l.peekcount--
 		//	fmt.Println("NextItem got peeked Item", l.buffer[0].String())
-		return l.buffer[0]
 	} else {
 		l.buffer[0] = <-l.Items
 		//	fmt.Println("NextItem got new Item", l.buffer[0].String())
-		return l.buffer[0]
 	}
+	return l.buffer[0]
 }
 
 func (l *Lexer) PeekItem() Item {
