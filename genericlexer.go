@@ -122,12 +122,11 @@ func (l *Lexer) NextItem() Item {
 	if l.peekcount > 0 {
 		l.peekcount--
 		//	fmt.Println("NextItem got peeked Item", l.buffer[0].String())
-		return l.buffer[0]
 	} else {
 		l.buffer[0] = <-l.Items
 		//	fmt.Println("NextItem got new Item", l.buffer[0].String())
-		return l.buffer[0]
 	}
+	return l.buffer[0]
 }
 
 func (l *Lexer) PeekItem() Item {
@@ -195,7 +194,7 @@ func lexComma(l *Lexer) stateFn {
 }
 
 func isWSP(r rune) bool {
-	return r == ' ' || r == '\t'
+	return r == ' ' || r == '\t' || r == '\n'
 }
 
 func lexWSP(l *Lexer) stateFn {
@@ -238,6 +237,13 @@ func lexParan(l *Lexer) stateFn {
 
 func (l *Lexer) ConsumeWhiteSpace() error {
 	for l.PeekItem().Type == ItemWSP {
+		l.NextItem()
+	}
+	return nil
+}
+
+func (l *Lexer) ConsumeComma() error {
+	for l.PeekItem().Type == ItemComma {
 		l.NextItem()
 	}
 	return nil
