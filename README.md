@@ -1,2 +1,2 @@
 # genericlexer
-Generic text lexer writtin in go
+Generic text lexer written in golang
